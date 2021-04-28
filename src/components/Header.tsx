@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Image,
     StyleSheet,
@@ -10,8 +10,20 @@ import { getStatusBarHeight } from 'react-native-iphone-x-helper'
 
 import userImg from '../assets/eggman.jpg'
 import fonts from '../styles/fonts'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export function Header() {
+
+    const [userName, setUserName] = useState<string>()
+
+    useEffect(() => {
+        async function loadStorageUserName() {
+            const user = await AsyncStorage.getItem('@plantmanager:user')
+            setUserName(user || '')
+        }
+        loadStorageUserName()
+    }, [])
+
     return (
         <View style={styles.container}>
             <View>
@@ -19,7 +31,7 @@ export function Header() {
                     Olá,
                 </Text>
                 <Text style={styles.userName}>
-                    Egg man
+                    {userName}
                 </Text>
             </View>
             <Image
@@ -38,20 +50,20 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
         marginTop: getStatusBarHeight(),
     },
-    greeting:{
-        fontSize:32,
-        color:colors.heading,
-        fontFamily:fonts.text
+    greeting: {
+        fontSize: 32,
+        color: colors.heading,
+        fontFamily: fonts.text
     },
-    userName:{
-        fontSize:32,
-        fontFamily:fonts.heading,
-        color:colors.heading,
-        lineHeight:40
+    userName: {
+        fontSize: 32,
+        fontFamily: fonts.heading,
+        color: colors.heading,
+        lineHeight: 40
     },
-    image:{
-        width:70,
-        height:70,
-        borderRadius:40
+    image: {
+        width: 70,
+        height: 70,
+        borderRadius: 40
     }
 })
