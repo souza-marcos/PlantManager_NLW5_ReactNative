@@ -8,6 +8,8 @@ import { FlatList } from 'react-native-gesture-handler'
 import { loadPlant, PlantProps } from '../libs/storage'
 import { formatDistance } from 'date-fns'
 import { pt } from 'date-fns/locale'
+import fonts from '../styles/fonts'
+import { PlantCardSecundary } from '../components/PlantCardSecundary'
 
 export function MyPlants() {
 
@@ -59,10 +61,11 @@ export function MyPlants() {
                     data={myPlants}
                     keyExtractor={(item) => String(item.id)}
                     renderItem={({ item }) => (
-                        <Text>Element</Text>
+                        <PlantCardSecundary
+                            data={item}
+                        />
                     )}
-                    showsVerticalScrollIndicator={false}
-                    contentContainerStyle={{ flex: 1 }}
+                    showsVerticalScrollIndicator={true}
                 />
             </View>
         </View>
@@ -79,18 +82,32 @@ const styles = StyleSheet.create({
         backgroundColor: colors.background
     },
     spotlight: {
-
+        backgroundColor:colors.blue_light,
+        paddingHorizontal:20,
+        borderRadius:20,
+        height:110,
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center'
     },
     spotlightImage: {
-
+        width:60,
+        height:60,
     },
     spotlightText: {
-
+        flex:1,
+        color:colors.blue,
+        paddingHorizontal:20,
+        
     },
     plants: {
-
+        flex:1,
+        width:'100%'
     },
     plantsTitle: {
-
+        fontSize:24,
+        fontFamily:fonts.heading,
+        color:colors.heading,
+        marginVertical:10
     }
 })

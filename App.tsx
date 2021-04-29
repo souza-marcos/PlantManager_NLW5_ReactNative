@@ -24,13 +24,9 @@ export default function App() {
 
 
 /*
-
-  Fragment -> React
-  Minutagem--> 38:38 // 29:31
   pfe-suio-yzb
-
-
-
   #missaoespacial
   #embuscadoproximonivel
+
+  #universoinfinito
 */
